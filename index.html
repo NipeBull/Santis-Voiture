@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Santis Racing Sets</title>
+    <meta name="description" content="A melhor experiência em simulação de corridas virtuais com equipamentos profissionais e eventos exclusivos. Inscreva-se em nossos planos mensais!">
+    <meta name="keywords" content="simulador corrida, racing simulator, formula 1, formula e, endurance, formula indy, simulação corridas, corridas virtuais, simulador profissional">
+    <meta name="author" content="Santis Racing Sets">
+    <meta property="og:title" content="Santis Racing Sets - Simulador de Corridas Premium">
+    <meta property="og:description" content="A melhor experiência em simulação de corridas virtuais com equipamentos profissionais e eventos exclusivos.">
+    <meta property="og:image" content="https://santisracing.com/og-image.jpg">
+    <meta property="og:url" content="https://santisracing.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Santis Racing Sets">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --primary-dark: #000000;
+            --text-dark: #2c2c2c;
+            --text-light: #ffffff;
+            --accent-color: #c9a95c;
+            --success-color: #4CAF50;
+            --gradient: linear-gradient(90deg, #1a1a1a 0%, #000000 100%);
+            --shadow: 0 5px 25px rgba(0,0,0,0.2);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gold-gradient: linear-gradient(135deg, #c9a95c 0%, #f0c675 50%, #c9a95c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-image: url('racing-bg.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 169, 92, 0.3);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 1rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            max-width: 200px;
+            transition: var(--transition);
+            height: auto;
+            filter: brightness(1.1);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold-gradient);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        nav a:hover {
+            background: rgba(201, 169, 92, 0.1);
+            transform: translateY(-2px);
+            color: var(--accent-color);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            background-image: url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border: 1px solid rgba(201, 169, 92, 0.3);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--text-light);
+            z-index: 2;
+            padding: 3rem;
+            max-width: 1000px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 169, 92, 0.2);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.3s;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            padding: 1.3rem 3rem;
+            font-size: 1.2rem;
+            background: var(--gold-gradient);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.6s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(201, 169, 92, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(201, 169, 92, 0.6);
+        }
+
+        .pricing-section {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            padding: 0 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 169, 92, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 40px rgba(201, 169, 92, 0.2);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 1.5rem 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2.5rem 0;
+        }
+
+        .features-list li {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .features-list i {
+            color: var(--accent-color);
+            margin-right: 0.8rem;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(201, 169, 92, 0.3);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 2;
+        }
+
+        .carousel-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(201, 169, 92, 0.5);
+        }
+
+        .carousel-dot.active {
+            background: var(--accent-color);
+            transform: scale(1.3);
+            border-color: var(--accent-color);
+        }
+
+        .modalidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+            padding: 0 2rem;
+        }
+
+        .modalidade-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid rgba(201, 169, 92, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modalidade-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(201, 169, 92, 0.2);
+        }
+
+        .modalidade-icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .rules-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: var(--gold-gradient);
+            color: var(--text-dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(201, 169, 92, 0.4);
+            transition: var(--transition);
+            z-index: 999;
+            text-decoration: none;
+            border: 2px solid rgba(201, 169, 92, 0.3);
+        }
+
+        .rules-button:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 8px 30px rgba(201, 169, 92, 0.6);
+        }
+
+        @keyframes rotateIcon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shakeIcon {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes bounceIcon {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes glowIcon {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+            100% { filter: brightness(1); }
+        }
+
+        @keyframes swingIcon {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .modalidade-card:hover .modalidade-icon.formula1 {
+            animation: rotateIcon 2s infinite linear;
+        }
+
+        .modalidade-card:hover .modalidade-icon.formulae {
+            animation: pulseIcon 1.5s infinite;
+        }
+
+        .modalidade-card:hover .modalidade-icon.endurance {
+            animation: shakeIcon 1s infinite;
+        }
+
+        .modalidade-card:hover .modalidade-icon.formulaindy {
+            animation: bounceIcon 1.5s infinite;
+        }
+
+        .modalidade-card:hover .modalidade-icon.campeonato {
+            animation: glowIcon 2s infinite;
+        }
+
+        .modalidade-card:hover .modalidade-icon.pratica {
+            animation: swingIcon 2s infinite;
+        }
+
+        footer {
+            background: var(--gradient);
+            color: var(--text-light);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(201, 169, 92, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.1);
+            color: var(--text-light);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .modalidade-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo.png" alt="Santis Racing Sets" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#fotografias">Fotografias</a></li>
+                    <li><a href="#modalidades">Modalidades</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Santis Racing Sets - onde a adrenalina encontra a perfeição</h1>
+                <p class="hero-subtitle">Viva a emoção das corridas com equipamentos profissionais</p>
+                <a href="#planos" class="cta-button">Ver Planos</a>
+            </div>
+        </section>
+
+        <section id="fotografias">
+            <h2>Fotografias</h2>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <img src="foto1.jpg" alt="Simulador Formula 1">
+                    <img src="foto2.jpg" alt="Simulador Endurance">
+                    <img src="foto3.jpg" alt="Simulador Formula E">
+                    <img src="foto4.png" alt="Simulador Formula E">
+                    <img src="foto5.png" alt="Simulador Formula E">
+                    <img src="foto6.jpg" alt="Simulador Formula E">
+                    <img src="foto7.jpg" alt="Simulador Formula E">
+                </div>
+                <div class="carousel-buttons">
+                    <span class="carousel-dot active"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="modalidades">
+            <h2>Nossas Modalidades</h2>
+            <div class="modalidades">
+                <div class="modalidade-card">
+                    <i class="fas fa-flag-checkered modalidade-icon formula1"></i>
+                    <h3>Formula 1</h3>
+                    <p>Experimente a adrenalina da categoria máxima do automobilismo com simuladores de última geração.</p>
+                </div>
+                <div class="modalidade-card">
+                    <i class="fas fa-bolt modalidade-icon formulae"></i>
+                    <h3>Formula E</h3>
+                    <p>Participe de corridas elétricas inovadoras com tecnologia de ponta e sustentabilidade.</p>
+                </div>
+                <div class="modalidade-card">
+                    <i class="fas fa-stopwatch modalidade-icon endurance"></i>
+                    <h3>Endurance</h3>
+                    <p>Desafie seus limites em provas de resistência que exigem estratégia e concentração.</p>
+                </div>
+                <div class="modalidade-card">
+                    <i class="fas fa-car modalidade-icon formulaindy"></i>
+                    <h3>Formula Indy</h3>
+                    <p>Acelere nas famosas pistas ovais e circuitos mistos da categoria americana.</p>
+                </div>
+                <div class="modalidade-card">
+                    <i class="fas fa-trophy modalidade-icon campeonato"></i>
+                    <h3>Campeonato</h3>
+                    <p>Participe de competições organizadas com rankings e premiações exclusivas transmitidas ao vivo.</p>
+                </div>
+                <div class="modalidade-card">
+                    <i class="fas fa-graduation-cap modalidade-icon pratica"></i>
+                    <h3>Prática</h3>
+                    <p>Sessões livres para aperfeiçoar suas habilidades e conhecer os simuladores antes de cada corrida.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="pricing-section">
+            <h2>Nossos Planos</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Plano Básico</h3>
+                    <div class="price">R$ 59<span class="price-period">/mês</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>Acesso ao servidor</li>
+                        <li><i class="fas fa-check"></i>2 treinos por semana</li>
+                        <li><i class="fas fa-check"></i>Tempo normal em campeonatos</li>
+                    </ul>
+                    <a href="https://forms.gle/rUENipn2Fn2a31BL9" class="cta-button" target="_blank">Inscrever-se</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Plano Competidor</h3>
+                    <div class="price">R$ 175<span class="price-period">/mês</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>Acesso ao servidor</li>
+                        <li><i class="fas fa-check"></i>5 treinos por semana</li>
+                        <li><i class="fas fa-check"></i>Tempo reduzido em 14% em campeonatos</li>
+                        <li><i class="fas fa-check"></i>Trackday competitivo liberado todos os dias</li>
+                    </ul>
+                    <a href="https://forms.gle/75RmuhNVW9C4M8w49" class="cta-button" target="_blank">Inscrever-se</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Plano HellRacer</h3>
+                    <div class="price">R$ 239<span class="price-period">/mês</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>Acesso ao servidor</li>
+                        <li><i class="fas fa-check"></i>Treinos ilimitados a qualquer momento</li>
+                        <li><i class="fas fa-check"></i>Tempo reduzido em 20% em campeonatos e trackday</li>
+                        <li><i class="fas fa-check"></i>Destaque no servidor e painel de tempo</li>
+                    </ul>
+                    <p style="color: #ff0000; font-weight: bold; margin-top: 1rem;">Temporariamente Indisponível</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botão flutuante de regras -->
+    <a href="Santis Racing Sets - SRS.pdf" class="rules-button" target="_blank" title="Regras e Regulamento">
+        <i class="fas fa-book-open"></i>
+    </a>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@SantisVoiture"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; Santis Voiture - organizado e criado por Santis Voiture</p>
+        <p>Todos os premios são de responsabilidade do criador e organizador Santis Voiture</p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel
+        const carousel = document.querySelector('.carousel-container');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto slide with pause on hover
+        let autoSlide = setInterval(nextSlide, 5000);
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % 3;
+            updateCarousel();
+        }
+
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            autoSlide = setInterval(nextSlide, 5000);
+        });
+
+        // Smooth scroll with offset for header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerOffset = 80;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
