@@ -263,7 +263,7 @@
 
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 4rem;
             padding: 0 2rem;
@@ -519,7 +519,57 @@
             }
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(26, 26, 26, 0.98);
+            padding: 2rem;
+            z-index: 1000;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 5rem;
+        }
+
+        .mobile-menu li {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .mobile-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
             .hero-title {
                 font-size: 2.8rem;
             }
@@ -528,12 +578,30 @@
                 font-size: 1.4rem;
             }
 
-            nav ul {
-                display: none;
+            main {
+                padding: 2rem 1rem;
             }
 
-            .mobile-menu {
-                display: block;
+            .carousel img {
+                height: 300px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .modalidades {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .rules-button {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
             }
         }
 
@@ -542,8 +610,21 @@
                 font-size: 2.2rem;
             }
 
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
             .modalidade-card {
                 padding: 2rem;
+            }
+
+            .social-links {
+                gap: 2rem;
             }
         }
     </style>
@@ -552,6 +633,9 @@
     <header>
         <div class="header-container">
             <img src="logo.png" alt="Santis Racing Sets" class="logo">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav>
                 <ul>
                     <li><a href="#inicio">Início</a></li>
@@ -562,6 +646,15 @@
             </nav>
         </div>
     </header>
+
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#fotografias">Fotografias</a></li>
+            <li><a href="#modalidades">Modalidades</a></li>
+            <li><a href="#planos">Planos</a></li>
+        </ul>
+    </div>
 
     <main>
         <section id="inicio" class="hero-section">
@@ -643,6 +736,18 @@
                 </div>
                 
                 <div class="pricing-card">
+                    <h3>Crie sua equipe</h3>
+                    <div class="price">R$ 78<span class="price-period">/mês</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>Servidor 100% moderado para sua equipe</li>
+                        <li><i class="fas fa-check"></i>Vagas de 4 pilotos (Expansivel para 8 porem com um custo adicional de R$ 15 por piloto)</li>
+                        <li><i class="fas fa-check"></i>Personalize seus carros</li>   
+                        <li><i class="fas fa-check"></i>Tenha sua prória equipe com direito a patrocinadores</li>
+                    </ul>
+                    <a href="https://forms.gle/rUENipn2Fn2a31BL9" class="cta-button" target="_blank">Inscrever-se</a>
+                </div>
+
+                <div class="pricing-card">
                     <h3>Plano Competidor</h3>
                     <div class="price">R$ 175<span class="price-period">/mês</span></div>
                     <ul class="features-list">
@@ -696,6 +801,12 @@
             }
         });
 
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
         // Carousel
         const carousel = document.querySelector('.carousel-container');
         const dots = document.querySelectorAll('.carousel-dot');
